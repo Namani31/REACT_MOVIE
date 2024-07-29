@@ -39,3 +39,7 @@
 .movie_genres li, .movie .movie_year {
     margin-right: 10px;
 }
+
+.movie>a{
+    text-decoration: none;
+  }
