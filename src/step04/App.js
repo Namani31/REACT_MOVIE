@@ -32,9 +32,24 @@ function App() {
     }, [loadCounter]
   );
 
+  function displayMovies() {
+    return(
+      <div>
+        <h1>Movie List2</h1>
+        <ul>
+          {
+            movies.map(item => {
+              return <li key={item.id}>{item.title}</li>
+            })
+          }
+        </ul>
+      </div>
+    );
+  }
+
   return (
     <div>
-      {isLoading ? `Loading... ${loadCounter}`: 'Loaded' }
+      {isLoading ? `Loading... ${loadCounter}`: displayMovies() }
     </div>
   );
 }
