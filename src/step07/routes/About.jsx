@@ -1,9 +1,13 @@
 import './About.css';
-export function About() {
-    return (
-        <div className='about_container'>
-            <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium quibusdam labore dolorum. Dolores tempore nemo provident fuga, laboriosam reprehenderit veniam impedit quam doloribus? Perspiciatis, eius earum praesentium quod quidem porro.</span>
-            <span>영화 리뷰 사이트, 2024</span>
-        </div>
-    );
+export function About(props){
+  console.log(props)
+  return (
+    <div className='about_container'>
+      <span>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fuga illo veritatis aliquid, nostrum tempora esse inventore sint exercitationem. Facilis eos omnis a officiis assumenda autem doloribus aperiam quisquam eius ipsa?
+      </span>
+      <span> - Lorem , 2205</span>
+    </div>
+
+  );
 }
