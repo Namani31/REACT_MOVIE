@@ -1,9 +1,9 @@
 // 3. Router 적용
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Home } from './pages/Home';
-import { About } from './pages/About';
-import { Detail } from './pages/Detail';
+import { Home } from './routes/Home';
+import { About } from './routes/About';
+import { Detail } from './routes/Detail';
 import { Navigation } from './components/Navigation';
 
 function App() {
