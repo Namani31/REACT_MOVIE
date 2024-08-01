@@ -1,60 +1,56 @@
-// Home 목록페이지
-//npm install axios
 import './Home.css';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Movie } from '../components/Movie';
-
+import { useState,useEffect } from 'react';
+import axios from 'axios'; //데이터 읽어오기
+import {Movie} from '../components/Movie';
 export function Home() {
   //상태변수를 설정
-  const [isLoading, setIsyLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [loadCounter, setLoadCounter] = useState(0);
   const [movies, setMovies] = useState(null);
-
-  const fetchMovies = async () => {
-    console.log('fetchMovies 호출');
+  //axios 데이터 읽어오기
+  const fetchMovies =async()=>{ //async , await 비동기적으로 처리
     const response = await axios.get('https://yts-proxy.now.sh/list_movies.json?sort_by=rating');
     console.log(response.data.data.movies);
     setMovies(response.data.data.movies);
-    setIsyLoading(false);
+    setIsLoading(false);
   }
   useEffect(
-    () => {
+    ()=>{
       console.log('useEffect발생');
+      console.log('fetchMovies 호출');
       fetchMovies();
-
-    }, [loadCounter]
-
+    },[loadCounter]
   );
 
-function displayMovies() {
-    return (
+  function displayMovies(){
+    return(
       <div>
-        <h1>Movie List(Home)</h1>
-        <ul className='movies'>
+      <h1>Movie List(Home)</h1>
+      <ul className='movies'>
           {
-            movies.map(item => {
-              return (
-                <Movie 
-                    key = {item.id}
-                    id = {item.id}
+            //map(반복함수) 사용하여 영화정보를 props로 전달
+            movies.map(item=>{
+             return(
+              <Movie key={item.id}
+                    title= {item.title}
+                    id= {item.id}
                     year = {item.year}
-                    title = {item.title}
-                    summary = {item.summary}
-                    poster = {item.medium_cover_image}
-                    genres = {item.genres}
-                />
-              );
+                    summary= {item.summary}
+                    poster= {item.medium_cover_image}
+                    genres= {item.genres}
+              />
+             );
             })
           }
-        </ul>
+      </ul>
       </div>
-    );
+    )
   }
 
   return (
-    <div >
-      {isLoading ? `Loading... ${loadCounter}` : displayMovies()}
-    </div>
+   <div>
+    {/* isLoading state를 사용하여 데이터를 완전히 읽은 후 화면출력 */}
+    {isLoading? `Loading... ${loadCounter}`:displayMovies()}
+   </div>
   );
 }
